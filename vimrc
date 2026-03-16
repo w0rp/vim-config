@@ -69,7 +69,7 @@ if has('gui_running')
     endif
 
     if has('osx')
-        set guifont=Inconsolata-Regular:h24
+        set guifont=Inconsolata-Regular:h34
     elseif has('win32')
         " Windows - http://levien.com/type/myfonts/inconsolata.html
         set guifont=Inconsolata:h16:cANSI:qDRAFT
