@@ -89,3 +89,25 @@ endif
 if expand('%:p') =~# 'neural'
     let b:ale_fixers = ['ruff']
 endif
+
+if expand('%:p') =~# 'memo-api'
+    let b:ale_fixers = [
+    \   'remove_trailing_lines',
+    \   'ruff',
+    \   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
+    \   'ruff_format',
+    \]
+    let b:ale_fix_on_save = 0
+
+    let s:memo_dir = expand('~/git/v4/services/memo-api/memoProject/')
+
+    let b:test_command = ale#command#CdString(expand('~/git/v4'))
+    \   . 'docker exec -it memo-api python manage.py test --settings=memoProject.test_settings --noinput --buffer '
+    \   . ale#Escape(
+    \       substitute(expand('%:p:r')[strlen(s:memo_dir):], '/', '.', 'g')
+    \   )
+endif
+
+if expand('%:p') =~# '_agent.py$'
+    setlocal wrap
+endif
