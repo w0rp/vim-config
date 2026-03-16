@@ -10,3 +10,9 @@ let b:ale_gitcommit_gitlint_options = '--ignore B6,T5'
 
 setlocal textwidth=72
 setlocal colorcolumn=73
+" Use spaces as tabs in git commits
+setlocal expandtab
+" Use 4 space tabs in git commits.
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=4
