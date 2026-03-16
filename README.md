@@ -1,6 +1,6 @@
 # w0rp's Vim files
 
-This repository contains w0rp's Vim files. They aren't for everyone, but he sure likes them.
+This repository contains w0rp's Vim configuration files. They aren't for everyone, but he sure likes them.
 
 ## Installation on Linux
 
@@ -8,7 +8,7 @@ Assuming you are using Ubuntu/Debian.
 
 ```bash
 sudo apt install vim git
-git clone --recursive https://github.com/w0rp/vim.git ~/.vim
+git clone --recursive https://github.com/w0rp/vim-config.git ~/.vim
 ```
 
 That's it. Now you are using Vim like w0rp on Linux.
@@ -20,7 +20,7 @@ That's it. Now you are using Vim like w0rp on Linux.
 3. Do this:
 
 ```bash
-git clone --recursive https://github.com/w0rp/vim.git ~/vimfiles
+git clone --recursive https://github.com/w0rp/vim-config.git ~/vimfiles
 ```
 
 That's it. Now you are using Vim like w0rp on Windows.
@@ -32,7 +32,7 @@ That's it. Now you are using Vim like w0rp on Windows.
 3. Do this:
 
 ```bash
-git clone --recursive https://github.com/w0rp/vim.git ~/.vim
+git clone --recursive https://github.com/w0rp/vim-config.git ~/.vim
 ```
 
 Open System Preferences > Keyboard > Shortcuts > App Shortcuts
