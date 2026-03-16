@@ -149,5 +149,7 @@ let g:python_import_dict = {
 \   'urlparse': 'from urllib.parse',
 \   'urlunparse': 'from urllib.parse',
 \   'uuid': 'import uuid',
+\   'uuid4': 'from uuid import uuid4',
+\   'UUID': 'from uuid import UUID',
 \   'zipfile': 'import zipfile',
 \}
