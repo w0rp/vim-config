@@ -38,7 +38,6 @@ let b:ale_linters = ['ruff', 'pyright']
 " Ignore unused imports so auto-fix doesn't remove them when using completion.
 let b:ale_python_ruff_options = '--ignore F401'
 let b:ale_linters_ignore = []
-" \   'ale#fixers#generic_python#BreakUpLongLines',
 let b:ale_fixers = [
 \   'remove_trailing_lines',
 \   'ruff',
@@ -85,10 +84,6 @@ if expand('%:p') =~# 'test-pylint'
     let b:ale_python_pylint_use_global = 1
     let b:ale_python_pylint_executable = '/home/w0rp/git/test-pylint/pylint.sh'
     let b:ale_filename_mappings = {'pylint': [['/home/w0rp/git/test-pylint', '/data']]}
-endif
-
-if expand('%:p') =~# 'migrations'
-    call filter(b:ale_fixers, 'v:val isnot# ''ale#fixers#generic_python#BreakUpLongLines''')
 endif
 
 if expand('%:p') =~# 'neural'
