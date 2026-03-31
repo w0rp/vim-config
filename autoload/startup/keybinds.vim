@@ -268,7 +268,7 @@ function! SmartEnter()
     return "\<CR>"
 endfunction
 
-" Return 1 if the current line is a bullet line.
+" Return 1 if the current line is a markdown list line.
 " Return 0 if the filtype is not markdown, configuration, plaintext.
 "
 " Matches:
@@ -276,11 +276,13 @@ endfunction
 "   - item
 "     * item
 "     - item
-function! startup#keybinds#IsBulletLine() abort
+"   1. item
+"     10. item
+function! startup#keybinds#IsMarkdownListLine() abort
     if &filetype =~# '^\(conf\|markdown\|\)$'
         let l:line = getline('.')
 
-        return l:line =~# '^\s*[*-]\%(\s\|$\)'
+        return l:line =~# '^\s*\([*-]\|\d\+\.\)\%(\s\|$\)'
     endif
 
     return 0
@@ -298,8 +300,8 @@ function! SmartTab() abort
         return l:keys
     endif
 
-    " Indent if we're on a line that looks like bullet points.
-    if startup#keybinds#IsBulletLine()
+    " Indent if we're on a markdown list line.
+    if startup#keybinds#IsMarkdownListLine()
         return "\<C-o>>>\<End>"
     endif
 
@@ -311,8 +313,8 @@ function! SmartShiftTab() abort
         return "\<C-p>"
     endif
 
-    " Dedent if we're on a line that looks like bullet points.
-    if startup#keybinds#IsBulletLine()
+    " Dedent if we're on a markdown list line.
+    if startup#keybinds#IsMarkdownListLine()
         return "\<C-o><<\<End>"
     endif
 
