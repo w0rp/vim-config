@@ -4,15 +4,20 @@ ALEFixSuggest
 ALEGoToDefinition
 ALEGoToDefinitionInTab
 ALELint
+AWS
 AngularJS
+Apera
 AppVeyor
 Blockchain
 Blockchains
 BufEnter
 BufWrite
 CKEDITOR
+DDQs
 DenseChat
 Django
+DocGen
+ECR
 ESLint
 Epunk
 Eshwari
@@ -25,7 +30,10 @@ GPT's
 Georgi
 JIRA
 JSON
+Kartesia
+LLMs
 LSP
+LangChain
 Lua
 MPRIS
 NeoVim
@@ -38,6 +46,7 @@ OpenAI's
 PS3
 PoC
 Pyright
+Q1
 Q2
 Q3
 RegexpReplace
@@ -75,6 +84,7 @@ falsy
 filetype
 filetypes
 footswitch
+frontend
 ftplugin
 gitcommit
 gitlint
@@ -94,6 +104,7 @@ meetups
 microservices
 mypy
 namespacing
+nd
 neovim
 openai
 orderable
