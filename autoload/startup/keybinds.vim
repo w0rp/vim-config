@@ -300,7 +300,7 @@ function! SmartTab() abort
 
     " Indent if we're on a line that looks like bullet points.
     if startup#keybinds#IsBulletLine()
-        return "\<C-o>>>"
+        return "\<C-o>>>\<End>"
     endif
 
     return snipMate#TriggerSnippet()
@@ -313,7 +313,7 @@ function! SmartShiftTab() abort
 
     " Dedent if we're on a line that looks like bullet points.
     if startup#keybinds#IsBulletLine()
-        return "\<C-o><<"
+        return "\<C-o><<\<End>"
     endif
 
     return snipMate#BackwardsSnippet()
@@ -331,36 +331,6 @@ inoremap <silent> <CR> <C-R>=SmartEnter()<CR>
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
 inoremap <silent> <C-n> <C-R>=SmartInsertCompletion()<CR>
-
-" In insert mode:
-" - If the current line is a bullet line, indent it.
-" - Otherwise, insert a normal tab.
-function! startup#keybinds#TabOrIndentBullet() abort
-    if !startup#keybinds#IsBulletLine()
-        return "\<Tab>"
-    endif
-
-    " Execute >> as a single normal mode command, then return to insert mode.
-    return "\<C-o>>>"
-endfunction
-
-" In insert mode:
-" - If the current line is a bullet line, dedent it.
-" - Otherwise, pass <S-Tab> through normally.
-function! startup#keybinds#TabOrDedentBullet() abort
-    if !startup#keybinds#IsBulletLine()
-        return "\<S-Tab>"
-    endif
-
-    " Execute << as a single normal mode command, then return to insert mode.
-    return "\<C-o><<"
-endfunction
-
-" Insert mode mappings:
-" - <Tab> conditionally indent bullet lines
-" - <S-Tab> conditionally dedents bullet lines
-inoremap <expr> <Tab> startup#keybinds#TabOrIndentBullet()
-inoremap <expr> <S-Tab> startup#keybinds#TabOrDedentBullet()
 
 " Use Ctrl+n to prompt Neural in normal mode
 noremap <C-n> <Plug>(neural_prompt)
