@@ -82,5 +82,16 @@ if expand('%:p') =~# 'git/relviz'
 endif
 
 if expand('%:p') =~# 'git/v4'
+    let s:v4_dir = expand('~/git/v4')
+
     let b:ale_fixers = ['eslint', 'extra_ale_fixers#FixWeirdImportCommas', 'prettier']
+
+    " Run `yarn test` for web-app test files.
+    if expand('%:p') =~# 'services/web-app'
+        let s:web_app_dir = s:v4_dir . '/services/web-app'
+
+        let b:test_command = ale#command#CdString(s:web_app_dir)
+        \   . 'yarn test '
+        \   . ale#Escape(expand('%:p:r')[strlen(s:web_app_dir) + 1:])
+    endif
 endif
