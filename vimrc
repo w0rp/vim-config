@@ -31,6 +31,10 @@ filetype plugin on
 " Prefer unix format for files.
 set fileformats=unix,dos
 
+" Disable modelines for now, due to security
+" See also: https://github.com/vim/vim/commit/4c287947164fe26a6bd32e1c9362668388ae7457
+set nomodeline
+
 if has('unix')
     if !has('gui_running')
         " Reset the terminal to work around stupid bullshit
