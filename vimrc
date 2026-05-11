@@ -26,6 +26,30 @@ if !g:vimrc_loaded
     let &runtimepath.=',' . $VIMHOME . '/after'
 endif
 
+" Load extra paths if not present in PATH.
+if !g:vimrc_loaded
+    let s:extra_paths = [
+    \ $HOME . '/go/bin',
+    \ $HOME . '/.pyenv/shims',
+    \ $HOME . '/.pyenv/bin',
+    \ '/opt/homebrew/bin',
+    \ '/opt/homebrew/sbin',
+    \ '/usr/local/bin',
+    \ $HOME . '/bin',
+    \ $HOME . '/.local/bin',
+    \ $HOME . '/.cargo/bin',
+    \]
+
+    for s:path in reverse(copy(s:extra_paths))
+        if isdirectory(s:path) && index(split($PATH, ':'), s:path) < 0
+        let $PATH = s:path . ':' . $PATH
+        endif
+    endfor
+
+    unlet s:extra_paths
+    unlet s:path
+endif
+
 filetype plugin on
 
 " Prefer unix format for files.
