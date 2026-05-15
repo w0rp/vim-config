@@ -59,6 +59,12 @@ set fileformats=unix,dos
 " See also: https://github.com/vim/vim/commit/4c287947164fe26a6bd32e1c9362668388ae7457
 set nomodeline
 
+" Extract only the filetype from the modeline and set that safely.
+augroup SafeFiletypeModelineGroup
+  autocmd!
+  autocmd BufReadPost,BufNewFile * let w:modeline_ft = get(map(filter(getline(max([1, line('$') - 4]), '$'), {_, line -> line =~# '\(^\|:\)\(ft\|filetype\)='}), {_, line -> matchstr(line, '\(^\|:\)\(ft\|filetype\)=\zs[-A-Za-z0-9_.+]*')}), 0, '') | if w:modeline_ft !=# '' | execute 'setlocal filetype=' . w:modeline_ft | endif
+augroup END
+
 if has('unix')
     if !has('gui_running')
         " Reset the terminal to work around stupid bullshit
