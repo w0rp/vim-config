@@ -12,16 +12,23 @@ function! startup#keybinds#TryToOpenLink() abort
         " Remove CR characters from links.
         let l:link = substitute(l:link, '\r', '', 'g')
 
-        call job_start(['xdg-open', l:link])
+        if has('macunix')
+            call job_start(['open', l:link])
+        else
+            call job_start(['xdg-open', l:link])
+        endif
         return 1
     endif
 
     return 0
 endfunction
 
+" https://google.com
+
 " This script holds all keybinding settings.
 
 nnoremap <silent> <C-LeftMouse> <LeftMouse> :call startup#keybinds#TryToOpenLink()<CR>
+nnoremap <silent> <2-LeftMouse> <LeftMouse>:call startup#keybinds#TryToOpenLink()<CR>
 nnoremap <silent> <C-9> :call startup#keybinds#TryToOpenLink()<CR>
 nnoremap <C-RightMouse> <Nop>
 
