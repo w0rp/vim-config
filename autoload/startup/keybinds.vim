@@ -1,11 +1,17 @@
 function! startup#keybinds#TryToOpenLink() abort
-    let l:filename = expand('<cfile>')
+    let l:cfile = expand('<cfile>')
 
     " Open file paths we double click if they are readable.
-    if filereadable(l:filename)
-        execute 'edit' fnameescape(l:filename)
-        return 1
-    endif
+    "
+    " We'll try adding on common extensions if they are not in the path.
+    for l:extension in ['', '.ts', '.tsx']
+        let l:filename = l:cfile . l:extension
+
+        if filereadable(l:filename)
+            execute 'edit' fnameescape(l:filename)
+            return 1
+        endif
+    endfor
 
     " Try to search for links we could open.
     let l:pos = getcurpos()
