@@ -36,8 +36,8 @@ endfunction
 
 " This script holds all keybinding settings.
 
-nnoremap <silent> <C-LeftMouse> <LeftMouse> :call startup#keybinds#TryToOpenLink()<CR>
-nnoremap <silent> <2-LeftMouse> <LeftMouse>:call startup#keybinds#TryToOpenLink()<CR>
+nnoremap <silent> <C-LeftMouse> <Cmd>call startup#keybinds#TryToOpenLink()<CR>
+nnoremap <silent> <2-LeftMouse> <Cmd>call startup#keybinds#TryToOpenLink()<CR>
 nnoremap <silent> <C-9> :call startup#keybinds#TryToOpenLink()<CR>
 nnoremap <C-RightMouse> <Nop>
 
