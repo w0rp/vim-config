@@ -1,4 +1,13 @@
 function! startup#keybinds#TryToOpenLink() abort
+    let l:filename = expand('<cfile>')
+
+    " Open file paths we double click if they are readable.
+    if filereadable(l:filename)
+        execute 'edit' fnameescape(l:filename)
+        return 1
+    endif
+
+    " Try to search for links we could open.
     let l:pos = getcurpos()
     let l:lnum = l:pos[1]
     let l:col = l:pos[2]
