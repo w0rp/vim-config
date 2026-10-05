@@ -40,14 +40,22 @@ if !g:vimrc_loaded
     \ $HOME . '/.cargo/bin',
     \]
 
+    " has('win32') is false for Vim running inside WSL.
+    if has('win32')
+        let s:path_sep = ';'
+    else
+        let s:path_sep = ':'
+    endif
+
     for s:path in reverse(copy(s:extra_paths))
-        if isdirectory(s:path) && index(split($PATH, ':'), s:path) < 0
-        let $PATH = s:path . ':' . $PATH
+        if isdirectory(s:path) && index(split($PATH, s:path_sep), s:path) < 0
+            let $PATH = s:path . s:path_sep . $PATH
         endif
     endfor
 
     unlet s:extra_paths
     unlet s:path
+    unlet s:path_sep
 endif
 
 filetype plugin on
@@ -337,7 +345,12 @@ let g:rainbow_active = 1
 
 " --- Vim grep settings ---
 
-set grepprg=rg\ --hidden\ --glob\ '!.git/**'\ --vimgrep\ --smart-case\ --follow
+if has('win32')
+    " cmd.exe doesn't strip single quotes, so use double quotes.
+    set grepprg=rg\ --hidden\ --glob\ \"!.git/**\"\ --vimgrep\ --smart-case\ --follow
+else
+    set grepprg=rg\ --hidden\ --glob\ '!.git/**'\ --vimgrep\ --smart-case\ --follow
+endif
 
 " --- NERDTree settings ---
 

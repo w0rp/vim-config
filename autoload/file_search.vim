@@ -135,8 +135,15 @@ function! file_search#FindProjectRoot() abort
         endif
 
         " Stop searching if the last dir was the root.
-        if l:dir is# '/'
-            return ''
+        if has('win32')
+            " Roots on Windows such as C:\ are their own parent.
+            if fnamemodify(l:dir, ':h') is# l:dir
+                return ''
+            endif
+        else
+            if l:dir is# '/'
+                return ''
+            endif
         endif
 
         let l:dir = fnamemodify(l:dir, ':h')
