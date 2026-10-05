@@ -199,7 +199,9 @@ nmap <F5> <Plug>(ale_find_references)
 " Use Vim's built in grep with ripgrep to search in files.
 noremap <C-f> :Grep<Space>
 
-if !has('gui_macvim')
+" Vim on Windows can't tell Ctrl+Shift+f from Ctrl+f, so mapping it there
+" would replace the Ctrl+f mapping above.
+if !has('gui_macvim') && !has('win32')
     " Ctrl+shift+f repeats the last search.
     noremap <C-s-f> :call startup#keybinds#RepeatGrep()<Return>
 endif

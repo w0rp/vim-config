@@ -347,7 +347,8 @@ let g:rainbow_active = 1
 
 if has('win32')
     " cmd.exe doesn't strip single quotes, so use double quotes.
-    set grepprg=rg\ --hidden\ --glob\ \"!.git/**\"\ --vimgrep\ --smart-case\ --follow
+    " Pass . explicitly, or rg can search stdin instead of the directory.
+    set grepprg=rg\ --hidden\ --glob\ \"!.git/**\"\ --vimgrep\ --smart-case\ --follow\ $*\ .
 else
     set grepprg=rg\ --hidden\ --glob\ '!.git/**'\ --vimgrep\ --smart-case\ --follow
 endif
